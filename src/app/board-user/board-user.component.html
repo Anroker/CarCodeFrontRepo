@@ -1,5 +1,7 @@
 <div class="container">
     <header class="jumbotron">
-        <p>{{ content }}</p>
+        <li class="list-group-item" *ngFor="let car of cars; let i = index">
+            {{ car.model }} with engine type {{car.engine}}
+        </li>
     </header>
 </div>
