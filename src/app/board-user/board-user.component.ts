@@ -9,20 +9,25 @@ import { UserService } from '../_services/user.service';
 export class BoardUserComponent implements OnInit {
 
   cars?: Car[];
-  errorWrite?:string
+  errorMessage?:any;
+  isError:boolean = false;
 
   constructor(private userService: UserService) { }
   ngOnInit(): void {
     this.userService.getAll().subscribe({
       next: data => {
         this.cars = data;
+        this.isError = false;
       },
-      error: err => {console.log(err)
+      error: err => {
+        
+        this.isError = true;
+        
+        console.log(err)
         if (err.error) {
-          this.cars = JSON.parse(err.error).message;
-        } else {
-          this.errorWrite = "Error with status: " + err.status;
-        }
+          this.errorMessage = "Status code is " + err.error.status + " " + err.error.error + "! " + err.error.message;
+
+        } 
       }
     });
   }

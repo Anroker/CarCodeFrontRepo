@@ -31,17 +31,6 @@ export class AppComponent {
   logout(): void {
 
     this.tokenStorageService.signOut();
-
-    // this.authService.logout().subscribe({
-    //   next: res => {
-    //     console.log(res);
-    //     this.storageService.clean();
-    //   },
-    //   error: err => {
-    //     console.log(err);
-    //   }
-    // });
-    
     window.location.reload();
   }
 }

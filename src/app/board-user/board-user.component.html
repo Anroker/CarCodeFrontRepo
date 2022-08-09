@@ -1,7 +1,22 @@
-<div class="container">
+<div *ngIf="isError == false" class="container">
+
     <header class="jumbotron">
         <li class="list-group-item" *ngFor="let car of cars; let i = index">
             {{ car.model }} with engine type {{car.engine}}
         </li>
+
     </header>
+
+
+</div>
+
+<div *ngIf="isError == true" class="container">
+
+    <header class="jumbotron">
+        {{errorWrite}}
+    </header>
+
+
+
+
 </div>
