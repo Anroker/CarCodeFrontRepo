@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Car } from '../model/car';
-import { UserService } from '../_services/user.service';
+// import { Car } from '../model/car';
+import { UserService } from '../../services/user.service';
+import {Car} from "../../model/car/car";
 @Component({
   selector: 'app-board-user',
   templateUrl: './board-user.component.html',
@@ -20,14 +21,15 @@ export class BoardUserComponent implements OnInit {
         this.isError = false;
       },
       error: err => {
-        
+
         this.isError = true;
-        
+
         console.log(err)
         if (err.error) {
+
           this.errorMessage = "Status code is " + err.error.status + " " + err.error.error + "! " + err.error.message;
 
-        } 
+        }
       }
     });
   }

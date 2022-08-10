@@ -1,0 +1,28 @@
+<div>
+    <h1>My Cars</h1>
+    <!-- <button type="button" [routerLink]="">Create new product</button> -->
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Model</th>
+                <th>Engine Type</th>
+                <th>Year of production</th>
+                <th>Vin</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let car of cars">
+                <td>{{car.id}}</td>
+                <td>{{car.model}}</td>
+                <td>{{car.engine}}</td>
+                <td>{{car.yearOfProduction}}</td>
+                <td>{{car.vin}}</td>
+                <td>
+                    <button type="button" [routerLink]="">Update</button>
+                    <button type="button" (click)="carService.getAll()">Remove</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

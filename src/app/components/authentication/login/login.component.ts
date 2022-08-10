@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenStorageService } from '../_helpers/token-storage.service';
-import { AuthService } from '../_services/auth.service';
+import { TokenStorageService } from '../../../_helpers/token-storage.service';
+import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 
 
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
+
   form: any = {
     username: null,
     password: null
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-    
+
         this.reloadPage();
 
       },
@@ -50,15 +50,15 @@ export class LoginComponent implements OnInit {
     });
   }
   reloadPage(): void {
-    
+
     window.location.reload();
-   
+
   }
 
   redirectTo(uri:string){
 
     this.router.navigateByUrl('', {skipLocationChange: true}).then(()=>
     this.router.navigate([uri]));
- 
+
   }
 }
