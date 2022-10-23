@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Car } from 'src/app/model/car/car';
-import { CarService } from 'src/app/services/car/car.service.service';
+import {Component, OnInit} from '@angular/core';
+import {Car} from 'src/app/model/car/car';
+import {CarService} from 'src/app/services/car/car.service.service';
 
 @Component({
   selector: 'app-cars',
@@ -9,15 +9,38 @@ import { CarService } from 'src/app/services/car/car.service.service';
 })
 export class CarsComponent implements OnInit {
 
-  cars: Car[] = [];
+  cars?: Car[];
+  currentCar: Car = {};
+  currentIndex = -1;
+  model = '';
 
-  constructor(public carService: CarService) { }
+  constructor(public carService: CarService) {
+  }
 
   ngOnInit(): void {
-    this.carService.getAll().subscribe((data: Car[]) => {
-      console.log(data);
-      this.cars = data;
-    })
+    this.getAllCars();
+  }
+
+  getAllCars(): void {
+    this.carService.getAll()
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.cars = data;
+        },
+        error: (e) => console.error(e)
+    });
+  }
+
+  refreshList(): void {
+    this.getAllCars();
+    this.currentCar = {};
+    this.currentIndex = -1;
+  }
+
+  setActiveCar(car: Car, index: number): void {
+    this.currentCar = car;
+    this.currentIndex = index;
   }
 
 }

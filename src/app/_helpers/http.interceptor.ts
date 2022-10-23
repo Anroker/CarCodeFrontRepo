@@ -1,14 +1,14 @@
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TokenStorageService } from './token-storage.service';
+import { TokenStorageService } from '../services/jwt/token-storage.service';
 
 const TOKEN_HEADER_KEY = 'Authorization';       // for Spring Boot back-end
 @Injectable()
 //Change name of class
 export class HttpRequestInterceptor implements HttpInterceptor {
     constructor(private token: TokenStorageService) { }
-    
+
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let authReq = req;
         const token = this.token.getToken();

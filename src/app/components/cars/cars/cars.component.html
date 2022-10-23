@@ -1,28 +1,76 @@
-<div>
-    <h1>My Cars</h1>
-    <!-- <button type="button" [routerLink]="">Create new product</button> -->
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Model</th>
-                <th>Engine Type</th>
-                <th>Year of production</th>
-                <th>Vin</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let car of cars">
-                <td>{{car.id}}</td>
-                <td>{{car.model}}</td>
-                <td>{{car.engine}}</td>
-                <td>{{car.yearOfProduction}}</td>
-                <td>{{car.vin}}</td>
-                <td>
-                    <button type="button" [routerLink]="">Update</button>
-                    <button type="button" (click)="carService.getAll()">Remove</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<!--<div>-->
+<!--    <h1>My Cars</h1>-->
+
+<!--    <table>-->
+<!--        <thead>-->
+<!--            <tr>-->
+<!--                <th>#</th>-->
+<!--                <th>Model</th>-->
+<!--                <th>Engine Type</th>-->
+<!--                <th>Year of production</th>-->
+<!--                <th>Vin</th>-->
+<!--            </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--            <tr *ngFor="let car of cars">-->
+<!--                <td>{{car.id}}</td>-->
+<!--                <td>{{car.model}}</td>-->
+<!--                <td>{{car.engine}}</td>-->
+<!--                <td>{{car.yearOfProduction}}</td>-->
+<!--                <td>{{car.vin}}</td>-->
+<!--                <td>-->
+<!--                    <button type="button" [routerLink]="">Update</button>-->
+<!--                    <button type="button" (click)="carService.getAll()">Remove</button>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
+
+<div class="list row">
+  <div class="col-md-8">
+<!--    <div class="input-group mb-3">-->
+<!--      <input-->
+<!--        type="text"-->
+<!--        class="form-control"-->
+<!--        placeholder="Search by title"-->
+<!--        [(ngModel)]="model"-->
+<!--      />-->
+<!--      <div class="input-group-append">-->
+<!--        <button-->
+<!--          class="btn btn-outline-secondary"-->
+<!--          type="button"-->
+<!--          (click)="searchTitle()"-->
+<!--        >-->
+<!--          Search-->
+<!--        </button>-->
+<!--      </div>-->
+<!--    </div>-->
+  </div>
+  <div class="col-md-6">
+    <h4>Cars List</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let car of cars; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveCar(car, i)"
+      >
+        {{ car.model }}
+      </li>
+    </ul>
+<!--    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllTutorials()">-->
+<!--      Remove All-->
+<!--    </button>-->
+  </div>
+  <div class="col-md-6">
+    <app-car-edit
+      [viewMode]="true"
+      [currentCar]="currentCar">
+    </app-car-edit>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <button class="btn btn-success" type="button" [routerLink]="'/carAdd'">Add new car</button>
 </div>

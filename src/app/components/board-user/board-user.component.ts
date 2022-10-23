@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { Car } from '../model/car';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../services/user/user.service';
 import {Car} from "../../model/car/car";
 @Component({
   selector: 'app-board-user',

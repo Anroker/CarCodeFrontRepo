@@ -1,1 +1,86 @@
-<p>car-edit works!</p>
+<div *ngIf="viewMode; else editable">
+  <div *ngIf="currentCar.id">
+    <h4>Tutorial</h4>
+    <div>
+      <label><strong>Title:</strong></label> {{ currentCar.model }}
+    </div>
+    <div>
+      <label><strong>Description:</strong></label>
+      {{ currentCar.engine }}
+    </div>
+    <div>
+      <label><strong>Status:</strong></label>
+<!--      {{ currentCar.published ? "Published" : "Pending" }}-->
+    </div>
+    <a
+      class="badge badge-warning"
+      routerLink="/car/{{ currentCar.id }}"
+    >
+      Edit
+    </a>
+  </div>
+  <div *ngIf="!currentCar">
+    <br />
+    <p>Please click on a Tutorial...</p>
+  </div>
+</div>
+<ng-template #editable>
+  <div *ngIf="currentCar.id" class="edit-form">
+    <h4>Tutorial</h4>
+    <form>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentCar.model"
+          name="title"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          [(ngModel)]="currentCar.engine"
+          name="description"
+        />
+      </div>
+      <div class="form-group">
+        <label><strong>Status:</strong></label>
+<!--        {{ currentCar.published ? "Published" : "Pending" }}-->
+      </div>
+    </form>
+<!--    <button-->
+<!--      class="badge badge-primary mr-2"-->
+<!--      *ngIf="currentCar.published"-->
+<!--      (click)="updatePublished(false)"-->
+<!--    >-->
+<!--      UnPublish-->
+<!--    </button>-->
+<!--    <button-->
+<!--      *ngIf="!currentCar.published"-->
+<!--      class="badge badge-primary mr-2"-->
+<!--      (click)="updatePublished(true)"-->
+<!--    >-->
+<!--      Publish-->
+<!--    </button>-->
+<!--    <button class="badge badge-danger mr-2" (click)="deleteTutorial()">-->
+<!--      Delete-->
+<!--    </button>-->
+<!--    <button-->
+<!--      type="submit"-->
+<!--      class="badge badge-success mb-2"-->
+<!--      (click)="updateTutorial()"-->
+<!--    >-->
+<!--      Update-->
+<!--    </button>-->
+    <p>{{ message }}</p>
+  </div>
+  <div *ngIf="!currentCar.id">
+    <br />
+    <p>Cannot access this Tutorial...</p>
+  </div>
+</ng-template>
